@@ -43,6 +43,7 @@ object Libs {
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:" + Versions.retrofit
         const val okhttp = "com.squareup.okhttp3:okhttp:" + Versions.ok_http
         const val interceptor = "com.squareup.okhttp3:logging-interceptor:" + Versions.ok_http
+        const val gsonConverter = "com.squareup.retrofit2:converter-gson:" + Versions.retrofit
         const val moshi = "com.squareup.moshi:moshi-kotlin:" + Versions.moshi
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:" + Versions.moshi
     }
