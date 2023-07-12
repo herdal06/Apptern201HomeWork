@@ -8,7 +8,7 @@ import com.ataerdal.apptern201homework.utils.extension.loadImage
 
 class ProductViewHolder(
     private val binding: ItemProductBinding,
-    private val onClickProduct: ((product: Product) -> Unit)?
+    private val onClickProduct: ((productId: Int) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(product: Product) = binding.apply {
         tvProductName.text = product.name
@@ -20,7 +20,7 @@ class ProductViewHolder(
         tvOldPrice.paintFlags = tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         root.setOnClickListener {
-            onClickProduct?.invoke(product)
+            product.id?.let { it1 -> onClickProduct?.invoke(it1) }
         }
     }
 }
