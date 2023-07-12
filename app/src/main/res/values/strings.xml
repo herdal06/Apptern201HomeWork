@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Apptern201HomeWork</string>
+    <string name="which_store">Hangi Mağazada Var?</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>

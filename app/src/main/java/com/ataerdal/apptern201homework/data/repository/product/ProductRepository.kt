@@ -4,4 +4,5 @@ import com.ataerdal.apptern201homework.domain.uimodel.Product
 
 interface ProductRepository {
     suspend fun getAllProducts(): List<Product>?
+    suspend fun getProductDetail(productId: Int): Product?
 }

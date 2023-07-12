@@ -24,7 +24,7 @@ class HomeViewModel @Inject constructor(
         getAlProductsUseCase().collect { response ->
             when (response) {
                 is Response.Loading -> _productsUiState.update { it.copy(loading = true) }
-                is Response.Success -> _productsUiState.update { it.copy(doctors = response.data) }
+                is Response.Success -> _productsUiState.update { it.copy(products = response.data) }
                 is Response.Error -> _productsUiState.update { it.copy(error = response.message) }
             }
         }

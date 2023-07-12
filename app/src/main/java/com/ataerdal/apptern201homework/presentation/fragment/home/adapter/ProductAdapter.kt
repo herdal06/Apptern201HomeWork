@@ -8,7 +8,7 @@ import com.ataerdal.apptern201homework.databinding.ItemProductBinding
 import com.ataerdal.apptern201homework.domain.uimodel.Product
 
 class ProductAdapter(
-    private val onClickProduct: ((product: Product) -> Unit)?
+    private val onClickProduct: ((productId: Int) -> Unit)?
 ) : ListAdapter<Product, ProductViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
         ProductViewHolder(
