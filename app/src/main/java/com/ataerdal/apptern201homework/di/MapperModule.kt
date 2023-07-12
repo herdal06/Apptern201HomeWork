@@ -1,5 +1,6 @@
 package com.ataerdal.apptern201homework.di
 
+import com.ataerdal.apptern201homework.domain.mapper.CartDtoMapper
 import com.ataerdal.apptern201homework.domain.mapper.ProductDtoMapper
 import dagger.Module
 import dagger.Provides
@@ -13,4 +14,11 @@ object MapperModule {
     @Provides
     @Singleton
     fun provideProductDtoMapper(): ProductDtoMapper = ProductDtoMapper()
+
+    @Provides
+    @Singleton
+    fun provideCartDtoMapper(
+        productDtoMapper: ProductDtoMapper
+    ): CartDtoMapper =
+        CartDtoMapper(productDtoMapper)
 }
