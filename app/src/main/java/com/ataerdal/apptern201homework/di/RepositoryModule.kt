@@ -1,5 +1,7 @@
 package com.ataerdal.apptern201homework.di
 
+import com.ataerdal.apptern201homework.data.repository.cart.CartRepository
+import com.ataerdal.apptern201homework.data.repository.cart.CartRepositoryImpl
 import com.ataerdal.apptern201homework.data.repository.product.ProductRepository
 import com.ataerdal.apptern201homework.data.repository.product.ProductRepositoryImpl
 import dagger.Binds
@@ -12,4 +14,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindProductRepository(productRepositoryImpl: ProductRepositoryImpl): ProductRepository
+
+    @Binds
+    abstract fun bindCartRepository(cartRepositoryImpl: CartRepositoryImpl): CartRepository
 }
