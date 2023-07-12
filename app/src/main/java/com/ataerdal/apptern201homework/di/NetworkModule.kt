@@ -1,6 +1,7 @@
 package com.ataerdal.apptern201homework.di
 
 import com.ataerdal.apptern201homework.BuildConfig
+import com.ataerdal.apptern201homework.data.remote.service.CartService
 import com.ataerdal.apptern201homework.data.remote.service.ProductService
 import com.ataerdal.apptern201homework.data.utils.constants.NetworkConstants.BASE_URL
 import com.google.gson.Gson
@@ -69,5 +70,13 @@ object NetworkModule {
         retrofit: Retrofit
     ): ProductService {
         return retrofit.create(ProductService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartService(
+        retrofit: Retrofit
+    ): CartService {
+        return retrofit.create(CartService::class.java)
     }
 }

@@ -1,0 +1,17 @@
+package com.ataerdal.apptern201homework.data.repository.cart
+
+import com.ataerdal.apptern201homework.data.remote.service.CartService
+import com.ataerdal.apptern201homework.domain.mapper.CartDtoMapper
+import com.ataerdal.apptern201homework.domain.uimodel.Cart
+import javax.inject.Inject
+
+class CartRepositoryImpl @Inject constructor(
+    private val cartService: CartService,
+    private val cartDtoMapper: CartDtoMapper
+) : CartRepository {
+    override suspend fun getShoppingCart(cartId: Int): Cart? {
+        return cartService.getShoppingCart(cartId = cartId)?.result?.let { cartDto ->
+            cartDtoMapper.toDomain(cartDto)
+        }
+    }
+}

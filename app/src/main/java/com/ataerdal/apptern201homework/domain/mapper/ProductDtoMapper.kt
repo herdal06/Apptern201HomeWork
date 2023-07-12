@@ -28,4 +28,8 @@ class ProductDtoMapper : Mapper<ProductDto, Product> {
     fun toDomainList(tList: List<ProductDto>): List<Product> {
         return tList.map { toDomain(it) }
     }
+
+    fun fromDomainList(domainList: List<Product>): List<ProductDto> {
+        return domainList.map { fromDomain(it) }
+    }
 }
