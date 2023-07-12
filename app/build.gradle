@@ -69,6 +69,7 @@ dependencies {
     // Retrofit
     implementation Libs.Network.retrofit
     implementation Libs.Network.moshiConverter
+    implementation Libs.Network.gsonConverter
     implementation Libs.Network.okhttp
     implementation Libs.Network.interceptor
 
