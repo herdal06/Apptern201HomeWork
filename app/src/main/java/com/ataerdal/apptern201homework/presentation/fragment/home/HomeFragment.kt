@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ataerdal.apptern201homework.base.BaseFragment
 import com.ataerdal.apptern201homework.databinding.FragmentHomeBinding
 import com.ataerdal.apptern201homework.presentation.fragment.home.adapter.ProductAdapter
@@ -31,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun collectUiState() {
         getAllProducts()
         collectLatestLifecycleFlow(viewModel.productsUiState) { state ->
-            state.doctors.let { products ->
+            state.products.let { products ->
                 productAdapter.submitList(products)
             }
         }
@@ -50,6 +51,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onClickProduct(productId: Int) {
-
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(
+                productId
+            )
+        )
     }
 }

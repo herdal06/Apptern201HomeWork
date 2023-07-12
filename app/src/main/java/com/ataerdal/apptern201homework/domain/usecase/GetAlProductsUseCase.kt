@@ -13,8 +13,8 @@ class GetAlProductsUseCase @Inject constructor(
     operator fun invoke() = flow {
         try {
             emit(Response.Loading)
-            val tracks = productRepository.getAllProducts()
-            emit(Response.Success(data = tracks))
+            val products = productRepository.getAllProducts()
+            emit(Response.Success(data = products))
         } catch (e: HttpException) {
             emit(Response.Error(message = e.message))
         } catch (e: IOException) {
