@@ -14,4 +14,9 @@ class ProductRepositoryImpl @Inject constructor(
             productDtoMapper.toDomainList(products)
         }
     }
+
+    override suspend fun getProductDetail(productId: Int): Product? {
+        return productService.getProductDetail(productId = productId)?.result
+            ?.let { productDtoMapper.toDomain(it) }
+    }
 }
