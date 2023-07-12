@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ataerdal.apptern201homework.databinding.ItemCartProductBinding
 import com.ataerdal.apptern201homework.domain.uimodel.Product
 import com.ataerdal.apptern201homework.utils.extension.loadImage
+import com.ataerdal.apptern201homework.utils.extension.prependDollarSign
 
 class CartProductViewHolder(
     private val binding: ItemCartProductBinding,
@@ -12,6 +13,7 @@ class CartProductViewHolder(
     fun bind(product: Product) = binding.apply {
 
         tvProductName.text = product.name
+        tvProductPrice.text = product.newPrice.toString().prependDollarSign()
         ivProduct.loadImage(product.image)
 
         root.setOnClickListener {

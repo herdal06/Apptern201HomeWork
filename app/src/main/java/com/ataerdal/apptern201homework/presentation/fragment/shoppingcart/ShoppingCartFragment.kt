@@ -7,8 +7,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ataerdal.apptern201homework.base.BaseFragment
 import com.ataerdal.apptern201homework.databinding.FragmentShoppingCartBinding
+import com.ataerdal.apptern201homework.domain.uimodel.Product
 import com.ataerdal.apptern201homework.presentation.fragment.shoppingcart.adapter.CartProductAdapter
 import com.ataerdal.apptern201homework.utils.extension.collectLatestLifecycleFlow
+import com.ataerdal.apptern201homework.utils.extension.prependDollarSign
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,7 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
         collectLatestLifecycleFlow(viewModel.shoppingCartUiState) { state ->
             state.cart.let { cart ->
                 cartProductAdapter.submitList(cart?.products)
+                binding?.tvBasketAmount?.text = calculateTotalPrice(cart?.products).toString().prependDollarSign() // ?
             }
         }
     }
@@ -56,5 +59,14 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
                 productId
             )
         )
+    }
+
+    // ?
+    private fun calculateTotalPrice(products: List<Product>?): Int {
+        var totalPrice = 0
+        products?.forEach { product ->
+            totalPrice += product.newPrice ?: 0
+        }
+        return totalPrice
     }
 }
