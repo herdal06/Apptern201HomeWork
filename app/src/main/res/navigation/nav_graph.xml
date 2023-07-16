@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_productDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_storeLocationsFragment"
+            app:destination="@id/storeLocationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoppingCartFragment"
@@ -41,4 +44,9 @@
             android:id="@+id/action_shoppingCartFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/storeLocationsFragment"
+        android:name="com.ataerdal.apptern201homework.presentation.fragment.storelocations.StoreLocationsFragment"
+        android:label="fragment_store_locations"
+        tools:layout="@layout/fragment_store_locations" />
 </navigation>
