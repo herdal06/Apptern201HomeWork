@@ -2,15 +2,17 @@ package com.ataerdal.apptern201homework.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.ataerdal.apptern201homework.R
+import com.ataerdal.apptern201homework.base.listener.ShoppingCartListener
 import com.ataerdal.apptern201homework.databinding.ActivityMainBinding
 import com.ataerdal.apptern201homework.presentation.fragment.shoppingcart.ShoppingCartFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , ShoppingCartListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,5 +44,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.fragmentContainerView)
         return navController.navigateUp()
+    }
+
+    override fun onCartStatusChanged(hasProducts: Boolean) {
+        binding.ivHasProduct.isVisible = hasProducts
     }
 }

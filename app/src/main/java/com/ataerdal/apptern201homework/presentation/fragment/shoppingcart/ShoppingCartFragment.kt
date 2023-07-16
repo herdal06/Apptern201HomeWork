@@ -1,5 +1,6 @@
 package com.ataerdal.apptern201homework.presentation.fragment.shoppingcart
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ataerdal.apptern201homework.R
 import com.ataerdal.apptern201homework.base.BaseFragment
+import com.ataerdal.apptern201homework.base.listener.ShoppingCartListener
 import com.ataerdal.apptern201homework.databinding.FragmentShoppingCartBinding
 import com.ataerdal.apptern201homework.domain.uimodel.Product
 import com.ataerdal.apptern201homework.presentation.fragment.shoppingcart.adapter.CartProductAdapter
@@ -27,8 +29,15 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
 
     private val viewModel: ShoppingCartViewModel by viewModels()
 
+    private var listener: ShoppingCartListener? = null
+
     private val cartProductAdapter: CartProductAdapter by lazy {
         CartProductAdapter(::onClickProduct, ::onClickDeleteIcon)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? ShoppingCartListener
     }
 
     override fun initialize() {
@@ -54,6 +63,8 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
                     calculateTotalPrice(cart?.products).toString().prependDollarSign()
 
                 binding?.btnBuy?.isEnabled = hasProducts
+
+                listener?.onCartStatusChanged(hasProducts)
             }
         }
     }
@@ -133,6 +144,11 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
         findNavController().navigate(ShoppingCartFragmentDirections.actionShoppingCartFragmentToHomeFragment())
     }
     */
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
     companion object {
         const val CART_ID = 5
