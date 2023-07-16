@@ -50,6 +50,7 @@ dependencies {
     // Google
     implementation Libs.Google.material
     implementation Libs.Google.gson
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     // Test
     testImplementation Libs.Test.junit

@@ -23,4 +23,8 @@ class CartDtoMapper @Inject constructor(
             products = productDtos
         )
     }
+
+    fun toDomainList(tList: List<CartDto>): List<Cart> {
+        return tList.map { toDomain(it) }
+    }
 }

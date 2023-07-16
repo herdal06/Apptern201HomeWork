@@ -8,7 +8,8 @@ import com.ataerdal.apptern201homework.utils.extension.prependDollarSign
 
 class CartProductViewHolder(
     private val binding: ItemCartProductBinding,
-    private val onClickProduct: ((productId: Int) -> Unit)?
+    private val onClickProduct: ((productId: Int) -> Unit)?,
+    private val onClickDeleteIcon: ((productId: Int) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(product: Product) = binding.apply {
 
@@ -18,6 +19,10 @@ class CartProductViewHolder(
 
         root.setOnClickListener {
             product.id?.let { it1 -> onClickProduct?.invoke(it1) }
+        }
+
+        ibDeleteFromBasket.setOnClickListener {
+            product.id?.let { it1 -> onClickDeleteIcon?.invoke(it1) }
         }
     }
 }

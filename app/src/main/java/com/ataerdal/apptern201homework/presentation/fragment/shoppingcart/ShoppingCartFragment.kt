@@ -19,7 +19,7 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
     private val viewModel: ShoppingCartViewModel by viewModels()
 
     private val cartProductAdapter: CartProductAdapter by lazy {
-        CartProductAdapter(::onClickProduct)
+        CartProductAdapter(::onClickProduct, ::onClickDeleteIcon)
     }
 
     override fun initialize() {
@@ -32,11 +32,12 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
     }
 
     private fun collectUiState() {
-        getShoppingCart(2) // ?
+        getShoppingCart(5) // ?
         collectLatestLifecycleFlow(viewModel.shoppingCartUiState) { state ->
             state.cart.let { cart ->
                 cartProductAdapter.submitList(cart?.products)
-                binding?.tvBasketAmount?.text = calculateTotalPrice(cart?.products).toString().prependDollarSign() // ?
+                binding?.tvBasketAmount?.text =
+                    calculateTotalPrice(cart?.products).toString().prependDollarSign() // ?
             }
         }
     }
@@ -59,6 +60,10 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
                 productId
             )
         )
+    }
+
+    private fun onClickDeleteIcon(productId: Int) {
+        viewModel.removeProductFromCart(cartId = 5, productId = productId)
     }
 
     // ?

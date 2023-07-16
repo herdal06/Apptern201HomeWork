@@ -8,7 +8,8 @@ import com.ataerdal.apptern201homework.databinding.ItemCartProductBinding
 import com.ataerdal.apptern201homework.domain.uimodel.Product
 
 class CartProductAdapter(
-    private val onClickProduct: ((productId: Int) -> Unit)?
+    private val onClickProduct: ((productId: Int) -> Unit)?,
+    private val onClickDeleteIcon: ((productId: Int) -> Unit)?
 ) : ListAdapter<Product, CartProductViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartProductViewHolder =
         CartProductViewHolder(
@@ -16,7 +17,7 @@ class CartProductAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ), onClickProduct
+            ), onClickProduct, onClickDeleteIcon
         )
 
     override fun onBindViewHolder(holder: CartProductViewHolder, position: Int) {
