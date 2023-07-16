@@ -25,6 +25,7 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
     override fun initialize() {
         setupCartProductAdapter()
         collectUiState()
+        btnBuyClickListener()
     }
 
     private fun setupCartProductAdapter() {
@@ -32,7 +33,7 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
     }
 
     private fun collectUiState() {
-        getShoppingCart(5) // ?
+        getShoppingCart(CART_ID) // ?
         collectLatestLifecycleFlow(viewModel.shoppingCartUiState) { state ->
             state.cart.let { cart ->
                 cartProductAdapter.submitList(cart?.products)
@@ -44,6 +45,10 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
 
     private fun getShoppingCart(cartId: Int) {
         viewModel.getShoppingCart(cartId)
+    }
+
+    private fun clearCart(cartId: Int) {
+        viewModel.clearCart(cartId)
     }
 
     override fun inflateBinding(
@@ -66,6 +71,10 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
         viewModel.removeProductFromCart(cartId = 5, productId = productId)
     }
 
+    private fun btnBuyClickListener() = binding?.btnBuy?.setOnClickListener {
+        clearCart(CART_ID)
+    }
+
     // ?
     private fun calculateTotalPrice(products: List<Product>?): Int {
         var totalPrice = 0
@@ -73,5 +82,9 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
             totalPrice += product.newPrice ?: 0
         }
         return totalPrice
+    }
+
+    companion object {
+        const val CART_ID = 5
     }
 }

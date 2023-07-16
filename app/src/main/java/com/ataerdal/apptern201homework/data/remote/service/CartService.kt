@@ -14,7 +14,7 @@ interface CartService {
 
     @GET("clearcart/{cartId}")
     suspend fun clearCart(
-        @Path("carId") cartId: Int
+        @Path("cartId") cartId: Int
     ): BaseResponse<CartDto>?
 
     @GET("removeproduct/{cartId}/{productId}")
