@@ -46,18 +46,14 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>() {
         collectLatestLifecycleFlow(viewModel.shoppingCartUiState) { state ->
             state.cart.let { cart ->
                 val hasProducts = !cart?.products.isNullOrEmpty()
-
-                binding?.rvCartProducts?.isVisible = false
-                binding?.tvNoProduct?.isVisible = false
+                binding?.rvCartProducts?.isVisible = hasProducts
+                binding?.tvNoProduct?.isVisible = !hasProducts
 
                 cartProductAdapter.submitList(cart?.products)
                 binding?.tvBasketAmount?.text =
                     calculateTotalPrice(cart?.products).toString().prependDollarSign()
 
                 binding?.btnBuy?.isEnabled = hasProducts
-
-                binding?.rvCartProducts?.isVisible = hasProducts
-                binding?.tvNoProduct?.isVisible = !hasProducts
             }
         }
     }
