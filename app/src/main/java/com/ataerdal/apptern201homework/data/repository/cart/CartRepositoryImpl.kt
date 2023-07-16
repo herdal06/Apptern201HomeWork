@@ -14,4 +14,19 @@ class CartRepositoryImpl @Inject constructor(
             cartDtoMapper.toDomain(cartDto)
         }
     }
+
+    override suspend fun clearCart(cartId: Int): Cart? {
+        return cartService.clearCart(cartId = cartId)?.result?.let { cartDto ->
+            cartDtoMapper.toDomain(cartDto)
+        }
+    }
+
+    override suspend fun removeProductFromCart(cartId: Int, productId: Int): Cart? {
+        return cartService.removeProductFromCart(
+            cartId = cartId,
+            productId = productId
+        )?.result?.let { cartDto ->
+            cartDtoMapper.toDomain(cartDto)
+        }
+    }
 }

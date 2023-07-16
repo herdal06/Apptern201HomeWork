@@ -3,7 +3,7 @@ package com.ataerdal.apptern201homework.presentation.fragment.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ataerdal.apptern201homework.core.Response
-import com.ataerdal.apptern201homework.domain.usecase.GetAlProductsUseCase
+import com.ataerdal.apptern201homework.domain.usecase.product.GetAlProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

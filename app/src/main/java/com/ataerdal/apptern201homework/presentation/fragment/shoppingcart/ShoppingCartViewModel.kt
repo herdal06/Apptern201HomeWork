@@ -3,8 +3,8 @@ package com.ataerdal.apptern201homework.presentation.fragment.shoppingcart
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ataerdal.apptern201homework.core.Response
-import com.ataerdal.apptern201homework.domain.usecase.GetShoppingCartUseCase
-import com.ataerdal.apptern201homework.domain.usecase.RemoveProductFromCartUseCase
+import com.ataerdal.apptern201homework.domain.usecase.cart.GetShoppingCartUseCase
+import com.ataerdal.apptern201homework.domain.usecase.cart.RemoveProductFromCartUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package com.ataerdal.apptern201homework.domain.usecase
+package com.ataerdal.apptern201homework.domain.usecase.product
 
 import com.ataerdal.apptern201homework.core.Response
 import com.ataerdal.apptern201homework.data.repository.product.ProductRepository
@@ -7,14 +7,14 @@ import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class GetAlProductsUseCase @Inject constructor(
+class GetProductDetailUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) {
-    operator fun invoke() = flow {
+    operator fun invoke(productId:Int) = flow {
         try {
             emit(Response.Loading)
-            val products = productRepository.getAllProducts()
-            emit(Response.Success(data = products))
+            val product = productRepository.getProductDetail(productId = productId)
+            emit(Response.Success(data = product))
         } catch (e: HttpException) {
             emit(Response.Error(message = e.message))
         } catch (e: IOException) {

@@ -1,4 +1,4 @@
-package com.ataerdal.apptern201homework.domain.usecase
+package com.ataerdal.apptern201homework.domain.usecase.cart
 
 import com.ataerdal.apptern201homework.core.Response
 import com.ataerdal.apptern201homework.data.repository.cart.CartRepository

@@ -3,10 +3,8 @@ package com.ataerdal.apptern201homework.presentation.fragment.productdetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ataerdal.apptern201homework.core.Response
-import com.ataerdal.apptern201homework.domain.uimodel.Product
-import com.ataerdal.apptern201homework.domain.usecase.AddProductToCartUseCase
-import com.ataerdal.apptern201homework.domain.usecase.GetProductDetailUseCase
-import com.ataerdal.apptern201homework.domain.usecase.RemoveProductFromCartUseCase
+import com.ataerdal.apptern201homework.domain.usecase.product.AddProductToCartUseCase
+import com.ataerdal.apptern201homework.domain.usecase.product.GetProductDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,6 +37,4 @@ class ProductDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             addProductToCartUseCase(cartId, productId)
         }
-
-
 }
