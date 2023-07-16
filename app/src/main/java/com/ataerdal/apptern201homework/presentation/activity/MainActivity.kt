@@ -3,6 +3,7 @@ package com.ataerdal.apptern201homework.presentation.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.ataerdal.apptern201homework.R
 import com.ataerdal.apptern201homework.databinding.ActivityMainBinding
 import com.ataerdal.apptern201homework.presentation.fragment.shoppingcart.ShoppingCartFragment
@@ -36,5 +37,10 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerView, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.fragmentContainerView)
+        return navController.navigateUp()
     }
 }
